@@ -29,7 +29,7 @@
 struct PortalCfg {
   char SSID[32] = "";
   char pass[32] = "";
-  bool mode = 0;    // (0 AP, 1 local)
+  uint8_t mode = WIFI_AP;    // (1 WIFI_STA, 2 WIFI_AP)
 };
 extern PortalCfg portalCfg;
 

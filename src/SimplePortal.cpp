@@ -37,17 +37,17 @@ PortalCfg portalCfg;
 void SP_handleConnect() {
   strcpy(portalCfg.SSID, _SP_server.arg("ssid").c_str());
   strcpy(portalCfg.pass, _SP_server.arg("pass").c_str());
-  portalCfg.mode = 1;
+  portalCfg.mode = WIFI_STA;
   _SP_status = 1;
 }
 
 void SP_handleAP() {
-  portalCfg.mode = 0;
+  portalCfg.mode = WIFI_AP;
   _SP_status = 2;
 }
 
 void SP_handleLocal() {
-  portalCfg.mode = 1;
+  portalCfg.mode = WIFI_STA;
   _SP_status = 3;
 }
 
