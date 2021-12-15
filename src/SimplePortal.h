@@ -27,8 +27,8 @@
 #define SP_TIMEOUT 5
 
 struct PortalCfg {
-  char SSID[32];
-  char pass[32];
+  char SSID[32] = "";
+  char pass[32] = "";
   bool mode = 0;    // (0 AP, 1 local)
 };
 extern PortalCfg portalCfg;
