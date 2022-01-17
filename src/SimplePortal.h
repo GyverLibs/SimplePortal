@@ -31,6 +31,7 @@
 #define SP_SWITCH_LOCAL 3
 #define SP_EXIT 4
 #define SP_TIMEOUT 5
+#define SP_CUSTOM_PAGE
 #define SP_CUSTOM_COUNT 5
 struct PortalCfg {
   char SSID[32] = "";
@@ -45,9 +46,8 @@ extern PortalCfg portalCfg;
 struct CustomField { char** storage; char* name; };
 struct CustomFields {
   CustomField fields[SP_CUSTOM_COUNT];
-  uin8_t count = 0;
+  uint8_t count = 0;
 };
-char* SP_connect_page;
 #endif
 
 void portalStart();     // запустить портал
@@ -58,7 +58,7 @@ byte portalStatus();    // статус: 1 connect, 2 ap, 3 local, 4 exit, 5 tim
 
 #ifdef SP_CUSTOM_PAGE
 void portalAddCustomField(char** storage, char* name);
-void portalSetCustomPage(char* page);
+void portalSetCustomPage(const char* page);
 #endif
 
 void SP_handleConnect();

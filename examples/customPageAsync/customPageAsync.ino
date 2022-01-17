@@ -1,8 +1,9 @@
 #include <ESP8266WiFi.h>
+// должно быть определено, чтобы установить кастомный режим
+#define SP_CUSTOM_PAGE //чтобы эта фишка сработала: нужно весь код перенести в .h
 #include <SimplePortal.h>
 
-// должно быть определено, чтобы установить кастомный режим
-#define SP_CUSTOM_PAGE
+
 
 const char setup_page[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML><html><head>
@@ -37,7 +38,7 @@ char* device_id;
 
 void setup() {
   Serial.begin(9600);
-  
+  device_id = (char*)malloc(32);
   // устанавливаем собственную страницу
   portalSetCustomPage(setup_page);
   // добавляем собственное поле, используемое в странице

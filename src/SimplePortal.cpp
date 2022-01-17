@@ -35,7 +35,7 @@ const char SP_connect_page[] PROGMEM = R"rawliteral(
 </center>
 </body></html>)rawliteral";
 #else
-char* SP_connect_page;
+const char* SP_connect_page;
 CustomFields SP_customFields;
 #endif
 
@@ -140,8 +140,7 @@ void portalAddCustomField(char** storage, char* name) {
   SP_customFields.fields[SP_customFields.count] = field;
   SP_customFields.count++;
 }
-
-void portalSetCustomPage(char* page) {
+void portalSetCustomPage(const char* page) {
   SP_connect_page = page;
 }
 #endif
