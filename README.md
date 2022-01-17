@@ -40,6 +40,10 @@ bool portalTick();      // вызывать в цикле
 void portalRun(uint32_t prd = 60000);   // блокирующий вызов
 byte portalStatus();    // статус: 1 connect, 2 ap, 3 local, 4 exit, 5 timeout
 
+#define SP_CUSTOM_PAGE  // открывает возможность установки своей страницы портала
+void portalSetCustomPage(char* page); // установить собственную страницу портала (вызывать до запуска портала)
+void portalAddCustomField(char** storage, char* name); // добавить поле, используемое в собственной странице (вызывать до запуска портала)
+
 // константы статуса
 SP_ERROR            // ошибка
 SP_SUBMIT           // отправлены логин-пароль

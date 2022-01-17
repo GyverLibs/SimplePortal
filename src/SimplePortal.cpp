@@ -6,6 +6,7 @@ static ESP8266WebServer _SP_server(80);
 static WebServer _SP_server(80);
 #endif
 
+#ifndef SP_CUSTOM_PAGE
 const char SP_connect_page[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +34,10 @@ const char SP_connect_page[] PROGMEM = R"rawliteral(
 </form>
 </center>
 </body></html>)rawliteral";
+#else
+char* SP_connect_page;
+CustomFields SP_customFields;
+#endif
 
 static bool _SP_started = false;
 static byte _SP_status = 0;
@@ -41,6 +46,13 @@ PortalCfg portalCfg;
 void SP_handleConnect() {
   strcpy(portalCfg.SSID, _SP_server.arg("ssid").c_str());
   strcpy(portalCfg.pass, _SP_server.arg("pass").c_str());
+  #ifdef SP_CUSTOM_PAGE
+  if (SP_customFields.count > 0) {
+    for (uint8_t i = 0; i < SP_customFields.count; i++) {
+      strcpy(*SP_customFields.fields[i].storage, _SP_server.arg(SP_customFields.fields[i].name).c_str());
+    }
+  }
+  #endif
   portalCfg.mode = WIFI_STA;
   _SP_status = 1;
 }
@@ -116,3 +128,20 @@ void portalRun(uint32_t prd) {
 byte portalStatus() {
   return _SP_status;
 }
+
+#ifdef SP_CUSTOM_PAGE
+void portalAddCustomField(char** storage, char* name) {
+  if (SP_customFields.count == SP_CUSTOM_COUNT) {
+    return;
+  }
+
+  CustomField field = { .storage = storage, .name = name };
+
+  SP_customFields.fields[SP_customFields.count] = field;
+  SP_customFields.count++;
+}
+
+void portalSetCustomPage(char* page) {
+  SP_connect_page = page;
+}
+#endif
