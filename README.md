@@ -2,7 +2,8 @@
 ![author](https://img.shields.io/badge/author-AlexGyver-informational.svg)
 # SimplePortal
 Простой менеджер WiFi для esp8266 для задания логина-пароля WiFi и режима работы  
-Для более широких возможностей настройки с веба используй [GyverPortal](https://github.com/GyverLibs/GyverPortal) - библиотеку конструктора веб интерфейса с кучей возможностей
+
+> Для более широких возможностей настройки с веба используй [GyverPortal](https://github.com/GyverLibs/GyverPortal) - библиотеку конструктора веб интерфейса с кучей возможностей
 
 ### Совместимость
 esp8266, esp32
