@@ -1,3 +1,5 @@
+This is an automatic translation, may be incorrect in some places. See sources and examples!
+
 # simpleportal
 Simple WiFi manager for esp8266 to set WiFi login-password and work mode
 
