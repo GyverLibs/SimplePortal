@@ -60,14 +60,25 @@ void SP_handleExit() {
 }
 
 void portalStart() {
+    // добавил delay(10), т.к. иначе на ESP32 крашится 
+    // Guru Meditation Error: Core  0 panic'ed (InstrFetchProhibited). Exception was unhandled. Core 0 register dump: PC: 0x00000000 ...
   WiFi.softAPdisconnect();
+    delay(10);  
   WiFi.disconnect();
+    delay(10);  
   IPAddress apIP(SP_AP_IP);
+    delay(10);  
   IPAddress subnet(255, 255, 255, 0);
+    delay(10);  
   WiFi.mode(WIFI_AP);
+    delay(10);  
   WiFi.softAPConfig(apIP, apIP, subnet);
+    delay(10);  
   WiFi.softAP(SP_AP_NAME);
+    delay(10);  
   _SP_dnsServer.start(53, "*", apIP);
+    delay(10);  
+
 
   _SP_server.onNotFound([]() {
     _SP_server.send(200, "text/html", SP_connect_page);
