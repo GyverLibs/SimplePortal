@@ -110,6 +110,7 @@ void portalRun(uint32_t prd) {
       portalStop();
       break;
     }
+    yield();
   }
 }
 
